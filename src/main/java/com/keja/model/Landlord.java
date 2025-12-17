@@ -60,4 +60,7 @@ public class Landlord {
     public void setHouses(List<House> houses) {
         this.houses = houses;
     }
+
+    public void setId(long andIncrement) {
+    }
 }

@@ -1,24 +1,29 @@
 package com.keja.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "inquiries")
 public class Inquiry {
-    private long tenantId;
-    private long landlordId;
-    private String houseLocation;
-    private double housePrice;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String message;
 
-    public Inquiry(long tenantId, long landlordId, String houseLocation, double housePrice, String message) {
-        this.tenantId = tenantId;
-        this.landlordId = landlordId;
-        this.houseLocation = houseLocation;
-        this.housePrice = housePrice;
-        this.message = message;
+    @ManyToOne
+    @JoinColumn(name = "tenant_id")
+    private Tenant tenant;
+
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
+
+    public Inquiry(long tenantId, Long id, String location, double price, String message) {
     }
 
-    // Getters
-    public long getTenantId() { return tenantId; }
-    public long getLandlordId() { return landlordId; }
-    public String getHouseLocation() { return houseLocation; }
-    public double getHousePrice() { return housePrice; }
-    public String getMessage() { return message; }
+    public long getLandlordId() {
+        return 0;
+    }
 }
