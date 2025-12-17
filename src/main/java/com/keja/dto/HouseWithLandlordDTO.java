@@ -1,4 +1,4 @@
-package com.keja;
+package com.keja.dto;
 
 public class HouseWithLandlordDTO {
     private String location;

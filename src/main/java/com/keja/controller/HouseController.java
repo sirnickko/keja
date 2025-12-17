@@ -1,5 +1,10 @@
-package com.keja;
+package com.keja.controller;
 
+import com.keja.dto.HouseWithLandlordDTO;
+import com.keja.model.House;
+import com.keja.model.Inquiry;
+import com.keja.model.Landlord;
+import com.keja.model.Tenant;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

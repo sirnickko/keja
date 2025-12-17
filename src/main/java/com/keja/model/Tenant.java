@@ -1,12 +1,12 @@
-package com.keja;
+package com.keja.model;
 
-public class Landlord {
+public class Tenant {
     private long id;
     private String name;
     private String phone;
     private String email;
 
-    // getters & setters
+    // Getters and Setters
     public long getId() { return id; }
     public void setId(long id) { this.id = id; }
 

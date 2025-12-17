@@ -1,5 +1,6 @@
-package com.keja;
+package com.keja.controller;
 
+import com.keja.model.Tenant;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

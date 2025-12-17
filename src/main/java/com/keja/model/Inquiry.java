@@ -1,4 +1,4 @@
-package com.keja;
+package com.keja.model;
 
 public class Inquiry {
     private long tenantId;
