@@ -69,4 +69,8 @@ public class House {
     public void setLandlord(Landlord landlord) {
         this.landlord = landlord;
     }
+
+    public Long getLandlordId() {
+        return 0L;
+    }
 }
