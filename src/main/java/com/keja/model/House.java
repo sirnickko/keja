@@ -1,15 +1,6 @@
 package com.keja.model;
 
-
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.JoinColumn;
-
 
 @Entity
 @Table(name = "houses")
@@ -30,8 +21,7 @@ public class House {
     private Landlord landlord;
 
     // Constructors
-    public House() {
-    }
+    public House() {}
 
     // Getters and Setters
     public Long getId() {
@@ -70,7 +60,8 @@ public class House {
         this.landlord = landlord;
     }
 
+    // Optional helper method
     public Long getLandlordId() {
-        return 0L;
+        return landlord != null ? landlord.getId() : null;
     }
 }

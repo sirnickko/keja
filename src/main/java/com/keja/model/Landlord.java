@@ -21,7 +21,12 @@ public class Landlord {
     private List<House> houses;
 
     // Constructors
-    public Landlord() {
+    public Landlord() {}
+
+    public Landlord(String name, String phone, String email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
     }
 
     // Getters and Setters
