@@ -1,36 +1,37 @@
 package com.keja.controller;
 
 import com.keja.model.Tenant;
+import com.keja.service.TenantService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("/tenants")
+@RequestMapping("/api/tenants")
 public class TenantController {
 
-    private final List<Tenant> tenants = new ArrayList<>();
-    private final AtomicLong idCounter = new AtomicLong(1);
+    private final TenantService tenantService;
 
-    @PostMapping("/register")
-    public Tenant registerTenant(@RequestBody Tenant tenant) {
-        tenant.setId(idCounter.getAndIncrement());
-        tenants.add(tenant);
-        return tenant;
+    public TenantController(TenantService tenantService) {
+        this.tenantService = tenantService;
     }
 
+    // Register tenant
+    @PostMapping
+    public Tenant registerTenant(@RequestBody Tenant tenant) {
+        return tenantService.saveTenant(tenant);
+    }
+
+    // Get all tenants
     @GetMapping
     public List<Tenant> getAllTenants() {
-        return tenants;
+        return tenantService.getAllTenants();
     }
 
+    // Get tenant by ID
     @GetMapping("/{id}")
-    public Tenant getTenantById(@PathVariable long id) {
-        return tenants.stream()
-                .filter(t -> t.getId() == id)
-                .findFirst()
-                .orElse(null);
+    public Tenant getTenantById(@PathVariable Long id) {
+        return tenantService.getTenantById(id);
     }
 }
+

@@ -8,4 +8,6 @@ public interface TenantService {
     Tenant saveTenant(Tenant tenant);
 
     List<Tenant> getAllTenants();
+
+    Tenant getTenantById(Long id);
 }

@@ -1,36 +1,42 @@
 package com.keja.controller;
 
 import com.keja.model.Landlord;
+import com.keja.service.LandlordService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
-@RequestMapping("/landlords")
+@RequestMapping("/api/landlords")
 public class LandlordController {
 
-    private final List<Landlord> landlords = new ArrayList<>();
-    private final AtomicLong idCounter = new AtomicLong(1);
+    private final LandlordService landlordService;
 
-    @PostMapping("/register")
-    public Landlord registerLandlord(@RequestBody Landlord landlord) {
-        landlord.setId(idCounter.getAndIncrement()); // auto-generate ID
-        landlords.add(landlord);
-        return landlord;
+    public LandlordController(LandlordService landlordService) {
+        this.landlordService = landlordService;
     }
 
+    // Register landlord
+    @PostMapping
+    public Landlord registerLandlord(@RequestBody Landlord landlord) {
+        return landlordService.saveLandlord(landlord);
+    }
+
+    // Get all landlords
     @GetMapping
     public List<Landlord> getAllLandlords() {
-        return landlords;
+        return landlordService.getAllLandlords();
     }
 
+    // Get landlord by ID
     @GetMapping("/{id}")
-    public Landlord getLandlordById(@PathVariable long id) {
-        return landlords.stream()
-                .filter(l -> l.getId() == id)
-                .findFirst()
-                .orElse(null);
+    public Landlord getLandlordById(@PathVariable Long id) {
+        return landlordService.getLandlordById(id);
+    }
+
+    // Delete landlord
+    @DeleteMapping("/{id}")
+    public void deleteLandlord(@PathVariable Long id) {
+        landlordService.deleteLandlord(id);
     }
 }
